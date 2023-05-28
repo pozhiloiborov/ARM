@@ -30,14 +30,14 @@
     <rect>
      <x>0</x>
      <y>30</y>
-     <width>781</width>
+     <width>791</width>
      <height>61</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Segoe Script</family>
-     <pointsize>10</pointsize>
+     <pointsize>8</pointsize>
     </font>
    </property>
    <property name="text">

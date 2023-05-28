@@ -1,6 +1,6 @@
 #include "mainww.h"
 #include "ui_mainww.h"
-
+#include <QPixmap>
 mainww::mainww(const QString& name, const QString& surname,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::mainww),
@@ -9,6 +9,10 @@ mainww::mainww(const QString& name, const QString& surname,QWidget *parent) :
     ui->setupUi(this);
     ui->name->setText(name);
     ui->surname->setText(surname);
+    QPixmap pix(":/img/image/anonim.png");
+    int w =400;
+    int h =400;
+    ui->pic->setPixmap(pix.scaled(w,h));
 }
 
 mainww::~mainww()
