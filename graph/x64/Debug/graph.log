@@ -1,0 +1,8 @@
+﻿  graph.cpp
+C:\Users\serge\OneDrive\Документы\GitHub\graph\graph.h(62,25): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\serge\OneDrive\Документы\GitHub\graph\graph.h(179,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\serge\OneDrive\Документы\GitHub\graph\graph.h(217,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\serge\OneDrive\Документы\GitHub\graph\graph.h(241,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\serge\OneDrive\Документы\GitHub\graph\graph.h(258,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\serge\OneDrive\Документы\GitHub\graph\graph.h(270,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  graph.vcxproj -> C:\Users\serge\OneDrive\Документы\GitHub\graph\x64\Debug\graph.exe
