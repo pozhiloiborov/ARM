@@ -1,8 +1,12 @@
-﻿  graph.cpp
-C:\Users\serge\OneDrive\Документы\GitHub\graph\graph.h(62,25): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\serge\OneDrive\Документы\GitHub\graph\graph.h(179,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\serge\OneDrive\Документы\GitHub\graph\graph.h(217,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\serge\OneDrive\Документы\GitHub\graph\graph.h(241,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\serge\OneDrive\Документы\GitHub\graph\graph.h(258,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\serge\OneDrive\Документы\GitHub\graph\graph.h(270,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-  graph.vcxproj -> C:\Users\serge\OneDrive\Документы\GitHub\graph\x64\Debug\graph.exe
+﻿  Source.cpp
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\graph.h(70,25): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\graph.h(187,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\graph.h(225,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\graph.h(249,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\graph.h(266,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\graph.h(278,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\graph.h(314,9): error C3861: setCoords: идентификатор не найден
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\graph.h(322,13): error C3861: drawLine: идентификатор не найден
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\graph.h(325,5): error C3861: drawVertex: идентификатор не найден
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\graph.h(329,5): error C2374: R: переопределение; множественная инициализация
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\graph.h(48,5): message : см. объявление "R"

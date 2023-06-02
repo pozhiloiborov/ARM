@@ -1,1 +1,2 @@
 C:\Users\serge\OneDrive\Документы\GitHub\graph\Debug\graph.exe
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Debug\graph.exe
