@@ -242,31 +242,6 @@ void Graph::drawGraph() {
             if (a == 0)
                 continue; 
             bool isPath = false;
-            /*for (int k = 0; k < komivoyaPath.size() - 1; k++) {
-                if ((graph.getVertText(komivoyaPath[k]) == i && graph.getVertText(komivoyaPath[k + 1]) == j) ||
-                    (graph.getVertText(komivoyaPath[k]) == j && graph.getVertText(komivoyaPath[k + 1]) == i)) {
-                    isPath = true;
-                    break;
-                    }
-                }
-            }*/
-            /*vector<int>tempvector;
-            tempvector = graph.getVertList();
-            for (int k = 0; k < komivoyaPath.size()- 1; k++)
-            {
-                int tempint = komivoyaPath[k];
-                int tempint2 = komivoyaPath[k+1];
-                tempint = graph.getVertText(tempint);
-                tempint2 = graph.getVertText(tempint2);
-                graph.getVertPos(tempint);
-                graph.getVertPos(tempint2);
-                tempint = tempvector[tempint];
-                tempint2 = tempvector[tempint2];
-                if ((tempint == i && tempint2 == j) || (tempint == j && tempint2 == i)) {
-                    isPath = true;
-                    break;
-                }
-            }*/
             drawLine(a, vertC[i].x, vertC[i].y, vertC[j].x, vertC[j].y, j, i,isPath);
         }
     }

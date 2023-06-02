@@ -9,5 +9,5 @@ C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(145,27): 
 C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(146,27): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(151,23): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(228,23): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(315,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(290,23): warning C4018: <: несоответствие типов со знаком и без знака
   graph.vcxproj -> C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Debug\graph.exe
