@@ -1,5 +1,4 @@
-QT       += core gui
-
+QT       += core gui printsupport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -14,6 +13,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mainww.cpp \
+    qcustomplot.cpp \
     zakazi.cpp
 
 HEADERS += \
@@ -21,6 +21,8 @@ HEADERS += \
     currentzakaz.h \
     mainwindow.h \
     mainww.h \
+    qcustomplot.h \
+    zakaz.h \
     zakazi.h
 
 FORMS += \

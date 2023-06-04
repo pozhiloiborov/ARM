@@ -1,13 +1,12 @@
 #include "zakazi.h"
 #include "ui_zakazi.h"
 
-zakazi::zakazi(QWidget *parent,mainww* m_parent) ://,mainww* m_parent
+zakazi::zakazi(QWidget *parent, mainww* p) :
     QDialog(parent),
     ui(new Ui::zakazi)
 {
     ui->setupUi(this);
-    m = parent;
-    m_parentt= m_parent;
+    pparent = p;
     zakaz a[20];
     for (int i = 0; i < 20; i++) {
             QString z = "Имя - " + a[i].name + " | Фамилия - " + a[i].surname + " | Улица - " + a[i].street + " | Дом - " + QString::number(a[i].num)+ " | Действие - " + a[i].action +".";
@@ -39,9 +38,10 @@ void zakazi::on_pushButton_clicked()
     QListWidgetItem* selectedItem = ui->listWidget->currentItem();
     if (selectedItem) {
             QString zz = selectedItem->text();
+            pparent->show();
+            pparent->take_zakaz(zz);
+            pparent->addToCurrentList();
             close();
-            window3 = new currentzakaz(zz,m,m_parentt);
-            window3->show();
         }
 }
 

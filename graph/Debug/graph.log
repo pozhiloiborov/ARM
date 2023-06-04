@@ -1,13 +1,17 @@
 ﻿  Source.cpp
-C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(44,23): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(52,23): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(53,27): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(112,23): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(115,23): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(117,27): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(145,27): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(146,27): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(151,23): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(228,23): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(290,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(36,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(90,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(93,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(95,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(123,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(124,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(129,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(206,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(224,31): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(324,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(342,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(348,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Source.cpp(427,31): warning C4018: <: несоответствие типов со знаком и без знака
+  graph.cpp
+  Создание кода...
   graph.vcxproj -> C:\Users\serge\OneDrive\Документы\GitHub\ARM\graph\Debug\graph.exe

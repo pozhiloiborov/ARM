@@ -1,14 +1,13 @@
 #include "currentzakaz.h"
 #include "ui_currentzakaz.h"
 
-currentzakaz::currentzakaz(const QString& zz,QWidget *parent,mainww* m_parent) :
+currentzakaz::currentzakaz(QWidget *parent,const QString& zz,mainww* m_parent) :
     QDialog(parent),
     ui(new Ui::currentzakaz)
 {
     ui->setupUi(this);
     ui->label->setText(zz);
-    mm=parent;
-    m_parentt = m_parent;
+    m_parentt=m_parent;
 }
 
 currentzakaz::~currentzakaz()
@@ -18,18 +17,18 @@ currentzakaz::~currentzakaz()
 
 void currentzakaz::on_pushButton_clicked()
 {
-    close();
-    mm->show();
     m_parentt->change_count("1");
     QString zz = ui->label->text();
     m_parentt->zakazinfo(zz);
+    m_parentt->show();
+    close();
 }
 
 
 void currentzakaz::on_pushButton_2_clicked()
 {
-    close();
-    mm->show();
     m_parentt->change_count("0");
+    m_parentt->show();
+    close();
 }
 

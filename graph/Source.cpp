@@ -7,7 +7,10 @@ int WinH = 800;
 vertCoord vertC[maxSize];
 Graph graph;
 int R = 50;
-vector<int> komivoyaPath;
+int** matrix;
+vector<pair<int, int>> Way;
+vector<int> New_Way;
+bool komivoya;
 using namespace std;
 Graph::Graph() {
     for (int i = 0; i < maxSize; i++)
@@ -23,19 +26,8 @@ bool Graph::isFull() {
 int Graph::getVertText(int i) {
     return vertList[i];
 }
-vector<int> Graph::getVertList() {
-    return vertList;
-}
 int Graph::getAdjMatrixElem(int i, int j) {
     return adjMatrix[i][j];
-}
-void Graph::getAdjMatrix(int(&matrix)[maxSize][maxSize])
-{
-    for (int i = 0; i < maxSize; i++) {
-        for (int j = 0; j < maxSize; j++) {
-            matrix[i][j] = adjMatrix[i][j];
-        }
-    }
 }
 int Graph::getAmountVerts() {
     return vertList.size();
@@ -46,20 +38,6 @@ int Graph::getVertPos(const int& vertex) {
             return i;
 
     return -1;
-}
-int Graph::getAmountEdges() {
-    int amount = 0;
-    for (int i = 0; i < vertList.size(); i++) {
-        for (int j = 0; j < vertList.size(); j++) {
-            if (adjMatrix[i][j] > 0) {
-                amount++;
-            }
-        }
-    }
-    return amount;
-}
-void Graph::changeWeight(int i, int j, int weight) {
-    adjMatrix[i][j] = adjMatrix[j][i] = weight;
 }
 void Graph::insertVertex(const int& vertex) {
     if (isFull()) {
@@ -242,57 +220,137 @@ void Graph::drawGraph() {
             if (a == 0)
                 continue; 
             bool isPath = false;
+            if (komivoya)
+            for (int k = 0; k < Way.size();k++) if ((getVertPos(Way[k].first) == i) && (getVertPos(Way[k].second) == j)) {
+                isPath = true;
+                break;
+            }
             drawLine(a, vertC[i].x, vertC[i].y, vertC[j].x, vertC[j].y, j, i,isPath);
         }
     }
     drawVertex(n);
     glutPostRedisplay();
 }
-int Graph::komivoya(int startVertex, vector<int>& optimalPath)
-{
-    int n = vertList.size();
-    vector<bool> visited(n, false);
-    visited[startVertex] = true;
-    int pathLength = 0;
-    int minPathLength = INT_MAX;
-    int currVertex = 0;
-    int level = 0;
-    komivoyaRec(currVertex, level, pathLength, minPathLength, visited, optimalPath);
-    return minPathLength;
+int** Change_Matrix() {
+    int n = graph.getAmountVerts();
+    int** matrix = new int* [n];
+    for (int i = 0; i < n; i++)
+        matrix[i] = new int[n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            int elem = graph.getAdjMatrixElem(i, j);
+            if (elem == 0 || i == j)
+                matrix[i][j] = -1;
+            else
+                matrix[i][j] = elem;
+        }
+    }
+    return matrix;
 }
-void Graph::komivoyaRec(int currVertex, int level, int pathLength, int& minPathLength, vector<bool>& visited, vector<int>& optimalPath)
-{
-    int n = vertList.size();
+int* searchMinElem(int* line, int n) {
+    int min = INT_MAX;
+    for (int j = 0; j < n; j++)
+        if (line[j] >= 0 && line[j] < min)
+            min = line[j];
 
-    if (level == n - 1) {
-        if (adjMatrix[currVertex][0] != 0) { 
-            int totalPathLength = pathLength + adjMatrix[currVertex][0];
-            if (totalPathLength < minPathLength) {
-                minPathLength = totalPathLength; 
-                optimalPath = visitedIndices(visited);
+    for (int j = 0; j < n; ++j)
+        if (line[j] >= 0)
+            line[j] -= min;
+    return line;
+}
+int** reductMatrix(int** oldmatrix) {
+    int** matrix = oldmatrix;
+    int n = graph.getAmountVerts();
+    for (int i = 0; i < n; i++)
+        matrix[i] = searchMinElem(matrix[i], n);
+    for (int i = 0; i < n; i++) {
+        int min = 10000000;
+        for (int j = 0; j < n; j++) {
+            if (matrix[j][i] >= 0 && matrix[i][j] < min)
+                min = matrix[j][i];
+        }
+        for (int j = 0; j < n; j++) {
+            if (matrix[j][i] >= 0)
+                matrix[j][i] -= min;
+        }
+    }
+    return matrix;
+}
+int** highZero(int** oldmatrix) {
+    int n = graph.getAmountVerts();
+    int** matrix = reductMatrix(oldmatrix);
+    int max = -1;
+    int line = 0, column = 0;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (matrix[i][j] == 0)
+            {
+                int minLine = 10000000;
+                int minColumn = 10000000;
+                for (int k = 0; k < n; k++) {
+                    if (matrix[i][k] == -1 || k == j || matrix[i][k] >= minLine)
+                        break;
+
+                    minLine = matrix[i][k];
+                }
+                for (int k = 0; k < n; k++) {
+                    if (matrix[k][j] == -1 || k == i || matrix[k][j] >= minColumn)
+                        break;
+
+                    minColumn = matrix[k][j];
+                }
+
+                if (max < minColumn + minLine) {
+                    max = minColumn + minLine;
+                    line = i;
+                    column = j;
+                }
             }
         }
-        return;
     }
-
-    // Ïðîõîäèì ïî âñåì âåðøèíàì
+    pair<int, int> p;
+    p.first = line + 1;
+    p.second = column + 1;
+    Way.push_back(p);
+    matrix[line][column] = -1;
+    matrix[column][line] = -1;
     for (int i = 0; i < n; i++) {
-        if (!visited[i] && adjMatrix[currVertex][i] != 0) {
-            visited[i] = true; 
-            komivoyaRec(i, level + 1, pathLength + adjMatrix[currVertex][i], minPathLength, visited, optimalPath);
-            visited[i] = false;
-        }
+        matrix[line][i] = -1;
+        matrix[i][column] = -1;
     }
+    cout << endl;
+    for (int i = 0; i < Way.size(); i++)
+        cout << Way[i].first << " -> " << Way[i].second << "    ";
+    cout << endl;
+    return matrix;
 }
-vector<int> Graph::visitedIndices(const vector<bool>& visited)
-{
-    vector<int> indices;
-    for (int i = 0; i < visited.size(); i++) {
-        if (visited[i]) {
-            indices.push_back(i);
-        }
+void printResult() {
+    int second = Way[0].second;
+    int i = 2;
+    New_Way.push_back(Way[0].first);
+    New_Way.push_back(Way[0].second);
+    while (i != graph.getAmountVerts() + 1) {
+        for (int j = 1; j < graph.getAmountVerts(); j++)
+            if (Way[j].first == second) {
+                second = Way[j].second;
+                New_Way.push_back(second);
+                i++;
+            }
     }
-    return indices;
+    for (int i = 0; i < New_Way.size(); i++) {
+        cout << New_Way[i];
+        if (i != New_Way.size() - 1)
+            cout << " -> ";
+    }
+    int sum = 0;
+    for (int i = 0; i < Way.size(); i++) {
+        int line = Way[i].first - 1;
+        int column = Way[i].second - 1;
+        sum += graph.getAdjMatrixElem(line, column);
+    }
+    cout << endl << "Длина пути " << sum << endl;
 }
 void makegraph()
 {
@@ -302,40 +360,23 @@ void makegraph()
     graph.insertVertex(4);
     graph.insertVertex(5);
     graph.insertVertex(6);
-
-    graph.insertEdgeWO(1, 2, 6);
-    graph.insertEdgeWO(1, 3, 4);
-    graph.insertEdgeWO(1, 4, 8);
-    graph.insertEdgeWO(1, 5, 7);
-    graph.insertEdgeWO(1, 6, 14);
-
-    graph.insertEdgeWO(2, 3, 7);
-    graph.insertEdgeWO(2, 4, 11);
-    graph.insertEdgeWO(2, 5, 7);
-    graph.insertEdgeWO(2, 6, 10);
-
-    graph.insertEdgeWO(3, 4, 4);
-    graph.insertEdgeWO(3, 5, 3);
-    graph.insertEdgeWO(3, 6, 10);
-
-    graph.insertEdgeWO(4, 5, 5);
-    graph.insertEdgeWO(4, 6, 11);
-
-    graph.insertEdgeWO(5, 6, 7);
-    
-    /*graph.insertVertex(1);
-    graph.insertVertex(2);
-    graph.insertVertex(3);
-    graph.insertVertex(4);
-    graph.insertVertex(5);
-    graph.insertVertex(6);
-    graph.insertEdge(1, 2, 10);
-    graph.insertEdge(2,3, 10);
-    graph.insertEdge(3, 4, 10);
-    graph.insertEdge(4, 5, 10);
-    graph.insertEdge(5, 6, 10);
-    graph.insertEdge(6, 1, 10);*/
-}
+    graph.insertEdge(1, 2, 6);
+    graph.insertEdge(1, 3, 4);
+    graph.insertEdge(1, 4, 8);
+    graph.insertEdge(1, 5, 7);
+    graph.insertEdge(1, 6, 14);
+    graph.insertEdge(2, 3, 7);
+    graph.insertEdge(2, 4, 11);
+    graph.insertEdge(2, 5, 7);;
+    graph.insertEdge(2, 6, 10);
+    graph.insertEdge(3, 4, 4);
+    graph.insertEdge(3, 5, 3);
+    graph.insertEdge(3, 6, 10);
+    graph.insertEdge(4, 5, 5);
+    graph.insertEdge(4, 6, 11);
+    graph.insertEdge(5, 6, 7);
+    graph.insertEdge(6, 1, 8);
+};
 void menu()
 {
     while (true)
@@ -350,6 +391,9 @@ void menu()
         cout << "8. Добавить направленное ребро " << endl; //insertEdge
         cout << "9. Удалить ребро " << endl; //eraseEdge
         int n, temp, temp1, temp2;
+        komivoya = false;
+        Way.clear();
+        New_Way.clear();
         bool f = true;
         cin >> n;
         switch (n)
@@ -377,19 +421,14 @@ void menu()
             break;
         case 4:
             graph.print();
-            cout << " Введите стартовую вершину " << endl; cin >> temp2;
-            temp = graph.getVertPos(temp2);
-            if (temp != -1)
-            {
-                temp1 = graph.komivoya(temp, komivoyaPath);
-               cout << "Оптимальный путь: ";
-                for (int vertex : komivoyaPath) {
-                    std::cout << vertex << " ";
-                }
-                temp2 = komivoyaPath[temp];
-                cout << graph.getVertText(temp) << endl;
-                cout << " длина пути " << temp1 << endl;
+            komivoya = true;
+            matrix = Change_Matrix();
+            temp = graph.getAmountVerts();
+            while (Way.size() < temp) {
+                matrix = highZero(matrix);
             }
+            cout << endl;
+            printResult();
             break;
         case 5:
             graph.print();

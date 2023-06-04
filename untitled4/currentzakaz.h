@@ -13,7 +13,7 @@ class currentzakaz : public QDialog
     Q_OBJECT
 
 public:
-    explicit currentzakaz(const QString& name,QWidget *parent = nullptr,mainww* m_parent=nullptr);//mainww* m_parent
+    explicit currentzakaz(QWidget *parent = nullptr,const QString& name="",mainww* m_parent=nullptr);
     ~currentzakaz();
 
 private slots:
@@ -24,7 +24,6 @@ private slots:
 private:
     Ui::currentzakaz *ui;
     mainww* m_parentt;
-    QWidget* mm;
 };
 
 #endif // CURRENTZAKAZ_H
