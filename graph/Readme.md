@@ -24,6 +24,8 @@
 
 # Диаграмма классов
 
+Рисунок 3 - UML-диаграмма
+
 ![граф](https://github.com/pozhiloiborov/ARM/assets/116288619/076c43a5-0342-4a93-b7c7-00bdb72afa5a)
 
 # Тестирование #
