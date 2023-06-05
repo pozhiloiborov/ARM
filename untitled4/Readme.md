@@ -35,6 +35,12 @@
 
 ![окно авторизации](https://github.com/pozhiloiborov/ARM/assets/116288619/a4bbd482-84be-4047-8315-455b5e22cd17)
 
+# Диаграмма классов #
+
+Рисунок 6 - UML-диаграмма
+
+![арм](https://github.com/pozhiloiborov/ARM/assets/116288619/42194e12-f734-4473-9699-64a4b1bf9ae9)
+
 # Тестирование #
 
 Видео - [https://www.youtube.com/@pozhiloiborov](https://www.youtube.com/watch?v=nexnk5v9Qj4)
