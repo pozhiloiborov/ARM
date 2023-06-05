@@ -20,4 +20,4 @@
 
 # Диаграмма классов
 
-https://github.com/pozhiloiborov/ARM/blob/main/graph/классы.png
+[граф](https://github.com/pozhiloiborov/ARM/assets/116288619/076c43a5-0342-4a93-b7c7-00bdb72afa5a)
