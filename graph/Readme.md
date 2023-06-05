@@ -17,3 +17,7 @@
 # Тестирование #
 
 Видео - [https://www.youtube.com/@pozhiloiborov](https://www.youtube.com/watch?v=nexnk5v9Qj4)
+
+# Диаграмма классов
+
+https://github.com/pozhiloiborov/ARM/blob/main/graph/классы.png
