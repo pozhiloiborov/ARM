@@ -1,3 +1,8 @@
-youtube - [https://www.youtube.com/@pozhiloiborov](https://www.youtube.com/watch?v=nexnk5v9Qj4)
+Видео - [https://www.youtube.com/@pozhiloiborov](https://www.youtube.com/watch?v=nexnk5v9Qj4)
 
-Для работы АРМ проект QT должен находиться - D:/1/untitled4 (untitled4 - папка с проектом)
+Отчеты
+
+Отчет по автоматизированному рабочему месту АРМ: [АРМ](https://github.com/pozhiloiborov/ARM/blob/main/untitled4/отчёт)
+Отчет по задаче Комивояжера: [Граф](https://github.com/pozhiloiborov/ARM/blob/main/graph/отчёт)
+
+Разработал студент РИС-22-1б Тарасов Сергей
