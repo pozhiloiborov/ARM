@@ -14,10 +14,15 @@
 - Для визуализации графа используются отдельные функции для отображения линий и графов 
 - Для визуализации задачи Коммивояжёра используется вектор состоящий из пар, каждая пара -  путь из одной вершины в другую 
 
-# Тестирование #
+# Скриншоты работы программы #
 
-Видео - [https://www.youtube.com/@pozhiloiborov](https://www.youtube.com/watch?v=nexnk5v9Qj4)
+[консоль](https://github.com/pozhiloiborov/ARM/assets/116288619/6094d14d-d9d1-42be-92f5-274d9bfb8426)
+[граф](https://github.com/pozhiloiborov/ARM/assets/116288619/ad7185d9-3b69-4051-9a98-d96705ae164a)
 
 # Диаграмма классов
 
 [граф](https://github.com/pozhiloiborov/ARM/assets/116288619/076c43a5-0342-4a93-b7c7-00bdb72afa5a)
+
+# Тестирование #
+
+Видео - [https://www.youtube.com/@pozhiloiborov](https://www.youtube.com/watch?v=nexnk5v9Qj4)
