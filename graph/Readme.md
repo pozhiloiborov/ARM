@@ -16,8 +16,8 @@
 
 # Скриншоты работы программы #
 
-[консоль](https://github.com/pozhiloiborov/ARM/assets/116288619/6094d14d-d9d1-42be-92f5-274d9bfb8426)
-[граф](https://github.com/pozhiloiborov/ARM/assets/116288619/ad7185d9-3b69-4051-9a98-d96705ae164a)
+![консоль](https://github.com/pozhiloiborov/ARM/assets/116288619/6094d14d-d9d1-42be-92f5-274d9bfb8426)
+![граф](https://github.com/pozhiloiborov/ARM/assets/116288619/ad7185d9-3b69-4051-9a98-d96705ae164a)
 
 # Диаграмма классов
 
