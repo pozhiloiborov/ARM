@@ -32,4 +32,4 @@
 
 # Исходный код #
 
-В репозитории - [*клик*]https://github.com/pozhiloiborov/ARM/tree/main/graph
+В репозитории - https://github.com/pozhiloiborov/ARM/tree/main/graph
