@@ -231,7 +231,7 @@ void Graph::drawGraph() {
     drawVertex(n);
     glutPostRedisplay();
 }
-int** Change_Matrix() {
+int** get_Matrix() {
     int n = graph.getAmountVerts();
     int** matrix = new int* [n];
     for (int i = 0; i < n; i++)
@@ -422,7 +422,7 @@ void menu()
         case 4:
             graph.print();
             komivoya = true;
-            matrix = Change_Matrix();
+            matrix = get_Matrix();
             temp = graph.getAmountVerts();
             while (Way.size() < temp) {
                 matrix = highZero(matrix);

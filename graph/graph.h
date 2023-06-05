@@ -19,7 +19,7 @@ public:
     bool isEmpty();//проверка на пустоту графа
     bool isFull();//проверка на заполненность
     int getVertText(int i);//получение номера вершины
-    int getAdjMatrixElem(int i, int j);//получение элемента из матрицы                    //
+    int getAdjMatrixElem(int i, int j);//получение элемента из матрицы                    
     int getAmountVerts();//получение количества вершин
     int getVertPos(const int& vertex);//получение позиции вершины
     void insertVertex(const int& vertex);//добавление вершины
@@ -34,6 +34,11 @@ public:
     void dfsRec(vector<bool>& visited, int currVertex, const vector<int>& vertList, int adjMatrix[][maxSize]); //рекурсия для обхода в глубину
     void drawGraph();
 };
+int** get_Matrix();
+int* searchMinElem(int* line, int n);
+int** reductMatrix(int** oldmatrix);
+int** highZero(int** oldmatrix);
+void printResult();
 void drawCircle(int x, int y, int R);
 void display();
 void drawVertex(int n);
