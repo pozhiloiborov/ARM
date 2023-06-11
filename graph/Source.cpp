@@ -4,12 +4,10 @@ struct vertCoord {
 };
 int WinW = 800;
 int WinH = 800;
-vertCoord vertC[maxSize];
+vertCoord coord[maxSize];
 Graph graph;
 int R = 50;
-int** matrix;
-vector<pair<int, int>> Way;
-vector<int> New_Way;
+vector<pair<int, int>> RightWay;
 bool komivoya;
 using namespace std;
 Graph::Graph() {
@@ -221,11 +219,11 @@ void Graph::drawGraph() {
                 continue; 
             bool isPath = false;
             if (komivoya)
-            for (int k = 0; k < Way.size();k++) if ((getVertPos(Way[k].first) == i) && (getVertPos(Way[k].second) == j)) {
+            for (int k = 0; k < RightWay.size();k++) if ((getVertPos(RightWay[k].first) == i) && (getVertPos(RightWay[k].second) == j)) {
                 isPath = true;
                 break;
             }
-            drawLine(a, vertC[i].x, vertC[i].y, vertC[j].x, vertC[j].y, j, i,isPath);
+            drawLine(a, coord[i].x, coord[i].y, coord[j].x, coord[j].y, j, i,isPath);
         }
     }
     drawVertex(n);
@@ -233,19 +231,19 @@ void Graph::drawGraph() {
 }
 int** get_Matrix() {
     int n = graph.getAmountVerts();
-    int** matrix = new int* [n];
+    int** m = new int* [n];
     for (int i = 0; i < n; i++)
-        matrix[i] = new int[n];
+        m[i] = new int[n];
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            int elem = graph.getAdjMatrixElem(i, j);
-            if (elem == 0 || i == j)
-                matrix[i][j] = -1;
+            int element = graph.getAdjMatrixElem(i, j);
+            if (element == 0 || i == j)
+                m[i][j] = -1;
             else
-                matrix[i][j] = elem;
+                m[i][j] = element;
         }
     }
-    return matrix;
+    return m;
 }
 int* searchMinElem(int* line, int n) {
     int min = INT_MAX;
@@ -258,97 +256,81 @@ int* searchMinElem(int* line, int n) {
             line[j] -= min;
     return line;
 }
-int** reductMatrix(int** oldmatrix) {
-    int** matrix = oldmatrix;
+int** reductMatrix(int** oldm) {
+    int** m = oldm;
     int n = graph.getAmountVerts();
     for (int i = 0; i < n; i++)
-        matrix[i] = searchMinElem(matrix[i], n);
+        m[i] = searchMinElem(m[i], n);
     for (int i = 0; i < n; i++) {
         int min = 10000000;
         for (int j = 0; j < n; j++) {
-            if (matrix[j][i] >= 0 && matrix[i][j] < min)
-                min = matrix[j][i];
+            if (m[j][i] >= 0 && m[i][j] < min)
+                min = m[j][i];
         }
         for (int j = 0; j < n; j++) {
-            if (matrix[j][i] >= 0)
-                matrix[j][i] -= min;
+            if (m[j][i] >= 0)
+                m[j][i] -= min;
         }
     }
-    return matrix;
+    return m;
 }
-int** highZero(int** oldmatrix) {
+int** highZero(int** oldm) {
     int n = graph.getAmountVerts();
-    int** matrix = reductMatrix(oldmatrix);
+    int** m = reductMatrix(oldm);
     int max = -1;
-    int line = 0, column = 0;
+    int i_line = 0, j_line = 0;
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
         {
-            if (matrix[i][j] == 0)
+            if (m[i][j] == 0)
             {
-                int minLine = 10000000;
-                int minColumn = 10000000;
+                int mini_line = 10000000;
+                int minj_line = 10000000;
                 for (int k = 0; k < n; k++) {
-                    if (matrix[i][k] == -1 || k == j || matrix[i][k] >= minLine)
+                    if (m[i][k] == -1 || k == j || m[i][k] >= mini_line)
                         break;
 
-                    minLine = matrix[i][k];
+                    mini_line = m[i][k];
                 }
                 for (int k = 0; k < n; k++) {
-                    if (matrix[k][j] == -1 || k == i || matrix[k][j] >= minColumn)
+                    if (m[k][j] == -1 || k == i || m[k][j] >= minj_line)
                         break;
 
-                    minColumn = matrix[k][j];
+                    minj_line = m[k][j];
                 }
 
-                if (max < minColumn + minLine) {
-                    max = minColumn + minLine;
-                    line = i;
-                    column = j;
+                if (max < minj_line + mini_line) {
+                    max = minj_line + mini_line;
+                    i_line = i;
+                    j_line = j;
                 }
             }
         }
     }
     pair<int, int> p;
-    p.first = line + 1;
-    p.second = column + 1;
-    Way.push_back(p);
-    matrix[line][column] = -1;
-    matrix[column][line] = -1;
+    p.first = i_line + 1;
+    p.second = j_line + 1;
+    RightWay.push_back(p);
+    m[i_line][j_line] = -1;
+    m[j_line][i_line] = -1;
     for (int i = 0; i < n; i++) {
-        matrix[line][i] = -1;
-        matrix[i][column] = -1;
+        m[i_line][i] = -1;
+        m[i][j_line] = -1;
     }
     cout << endl;
-    for (int i = 0; i < Way.size(); i++)
-        cout << Way[i].first << " -> " << Way[i].second << "    ";
+    cout << " Найденные пути " << endl;
+    for (int i = 0; i < RightWay.size(); i++)
+        cout << RightWay[i].first << " -> " << RightWay[i].second << "    ";
     cout << endl;
-    return matrix;
+    return m;
 }
 void printResult() {
-    int second = Way[0].second;
-    int i = 2;
-    New_Way.push_back(Way[0].first);
-    New_Way.push_back(Way[0].second);
-    while (i != graph.getAmountVerts() + 1) {
-        for (int j = 1; j < graph.getAmountVerts(); j++)
-            if (Way[j].first == second) {
-                second = Way[j].second;
-                New_Way.push_back(second);
-                i++;
-            }
-    }
-    for (int i = 0; i < New_Way.size(); i++) {
-        cout << New_Way[i];
-        if (i != New_Way.size() - 1)
-            cout << " -> ";
-    }
     int sum = 0;
-    for (int i = 0; i < Way.size(); i++) {
-        int line = Way[i].first - 1;
-        int column = Way[i].second - 1;
-        sum += graph.getAdjMatrixElem(line, column);
+    for (int i = 0; i < RightWay.size(); i++) {
+        int i_line = RightWay[i].first - 1;
+        int j_line = RightWay[i].second - 1;
+        sum += graph.getAdjMatrixElem(i_line, j_line);
     }
     cout << endl << "Длина пути " << sum << endl;
 }
@@ -391,9 +373,9 @@ void menu()
         cout << "8. Добавить направленное ребро " << endl; //insertEdge
         cout << "9. Удалить ребро " << endl; //eraseEdge
         int n, temp, temp1, temp2;
+        int** matrix;
         komivoya = false;
-        Way.clear();
-        New_Way.clear();
+        RightWay.clear();
         bool f = true;
         cin >> n;
         switch (n)
@@ -424,7 +406,7 @@ void menu()
             komivoya = true;
             matrix = get_Matrix();
             temp = graph.getAmountVerts();
-            while (Way.size() < temp) {
+            while (RightWay.size() < temp) {
                 matrix = highZero(matrix);
             }
             cout << endl;
@@ -480,7 +462,7 @@ void drawText(int text, int x1, int y1,bool f) {
         glutBitmapCharacter(font, s[j]);
 }
 void drawLine(int text, int x0, int y0, int x1, int y1, int start, int end,bool f) {
-    if (f) glColor3f(1.0, 0.0, 0.0);
+    if (f) glColor3f(1.0, 0.0, 0.0);// if true draw komivoyager path
     else glColor3f(0.0, 0.0, 0.0);
     glBegin(GL_LINES);
     glVertex2i(x0, y0);
@@ -489,7 +471,7 @@ void drawLine(int text, int x0, int y0, int x1, int y1, int start, int end,bool 
     int textX = (x1 - x0) / 4 + x0; 
     int textY = (y1 - y0) / 4 + y0; 
     drawText(text, textX, textY,true); // вес ребра у начала стрелки
-    if (f) glColor3f(1.0, 0.0, 0.0);
+    if (f) glColor3f(1.0, 0.0, 0.0);// if true draw komivoyager path
     else glColor3f(0.0, 0.0, 0.0);
     float vx = x0 - x1;
     float vy = y0 - y1;
@@ -505,22 +487,22 @@ void drawLine(int text, int x0, int y0, int x1, int y1, int start, int end,bool 
     glEnd();
 }
 void setCoords(int i, int n) {
-    int R_;
+    int Rcalc;
     int x0 = WinW / 2;
     int y0 = WinH / 2;
     R = 5 * (WinW / 13) / n;
-    R_ = WinW / 2 - R - 10;
+    Rcalc = WinW / 2 - R - 10;
     float theta = 2.0f * 3.1415926f * i / n;
-    int x1 = R_ * sin(theta) + x0;
-    int y1 = R_ * cos(theta) + y0;
-    vertC[i].x = x1;
-    vertC[i].y = y1;
+    int x1 = Rcalc * sin(theta) + x0;
+    int y1 = Rcalc * cos(theta) + y0;
+    coord[i].x = x1;
+    coord[i].y = y1;
 }
 void drawVertex(int n) {
     for (int i = 0; i < n; i++) {
-        drawCircle(vertC[i].x, vertC[i].y, R);
+        drawCircle(coord[i].x, coord[i].y, R);
         glColor3f(0.0f, 0.0f, 0.0f);
-        drawText(graph.getVertText(i), vertC[i].x, vertC[i].y,false);
+        drawText(graph.getVertText(i), coord[i].x, coord[i].y,false);
     }
 }
 void display() {
